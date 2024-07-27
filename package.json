@@ -1,0 +1,29 @@
+{
+  "name": "chakra-next-cli",
+  "version": "1.0.3",
+  "description": "chakra-next-cli is a command-line tool that exports Chakra UI components to separate files and adds the top-level 'use client' directive, making them compatible with Next.js App Router.",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [
+    "Chakra UI",
+    "NextJS",
+    "App router",
+    "SSR"
+  ],
+  "author": "Lucky victory <luckyvictory54@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^12.1.0"
+  },
+  "bin": {
+    "chakra-next-cli": "./index.js",
+    "chakra-next": "./index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Lucky-victory/chakra-next"
+  },
+  "bugs": {
+    "url": "https://github.com/Lucky-victory/chakra-next/issues"
+  }
+}
