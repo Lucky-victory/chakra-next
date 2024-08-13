@@ -1,6 +1,6 @@
 # chakra-next
 
-`chakra-next` is a command-line tool that exports Chakra UI components to separate files and adds the top-level "use client" directive, making them compatible with Next.js App Router. This tool streamlines the process of organizing and preparing Chakra UI components for use in Next.js projects.
+`chakra-next` is a command-line tool that exports Chakra UI components to separate files, sets up Chakra UI configuration, and ensures compatibility with App Router. This tool streamlines the process of organizing and preparing Chakra UI components for use in Next.js projects.
 
 ## Features
 
@@ -8,6 +8,9 @@
 - Automatically adds the "use client" directive for Next.js App Router compatibility
 - Supports exporting entire component families (e.g., Menu, Modal, Tabs)
 - Customizable output directory and file extension
+- Sets up Chakra UI configuration and provider
+- Supports both TypeScript and JavaScript projects
+- Configures for both App Router and Pages Router
 
 ## Installation
 
@@ -35,12 +38,16 @@ chakra-next [component-names...]
 
 Options:
 
-- `-o, --output <dir>`: Specify the output directory (default: "components/ui")
+- `-o, --output <dir>`: Specify the output directory for components (default: "components/ui")
 - `-e, --extension <ext>`: Specify the file extension (default: "tsx", options: "tsx" or "jsx")
+- `--init`: Initialize Chakra UI setup without exporting components
 
 Examples:
 
 ```bash
+# Initialize Chakra UI setup
+chakra-next --init
+
 # Export a single component
 chakra-next Button
 
@@ -51,21 +58,17 @@ chakra-next Button Menu Modal
 chakra-next Button -o src/components -e jsx
 ```
 
-If you run the command without specifying component names, you'll be prompted to enter them interactively.
+If you run the command without specifying component names or with the `--init` flag, you'll be guided through the Chakra UI setup process.
 
-### Programmatic Usage
+### Setup Process
 
-You can also use `chakra-next` programmatically in your Node.js scripts:
+When initializing or running without arguments, the script will:
 
-```javascript
-const { exportComponent, createDirectoryIfNotExists } = require('chakra-next');
-
-// Create the output directory if it doesn't exist
-createDirectoryIfNotExists('components/ui');
-
-// Export a component
-exportComponent('Button', 'components/ui', 'tsx');
-```
+1. Prompt you about TypeScript usage
+2. Ask if you're using the Next.js App Router
+3. Create or update a theme file in `lib/theme.(ts|js)`
+4. Set up a Chakra provider in `providers/chakra-provider.(tsx|jsx)`
+5. For App Router users, update the layout file to include the provider
 
 ## API
 
@@ -76,6 +79,7 @@ Exports a Chakra UI component to a separate file.
 - `componentName` (string): Name of the component to export
 - `outputDir` (string): Directory to output the component file
 - `fileExtension` (string): File extension for the component file ("tsx" or "jsx")
+
 
 ### `createDirectoryIfNotExists(dirPath)`
 
@@ -100,4 +104,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Support
 
-If you encounter any issues or have questions, please file an issue on the [GitHub repository](https://github.com/lucky-victory/chakra-next/issues).
+If you encounter any issues or have questions, please file an issue on the [GitHub repository](https://github.com/your-username/chakra-next/issues).
